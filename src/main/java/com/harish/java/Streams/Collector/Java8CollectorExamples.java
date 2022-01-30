@@ -184,77 +184,47 @@ public class Java8CollectorExamples {
         employeeList.add(new Employee(400, "Page", 59, "Africa", 450000));
 
         // Collectors.toList() Example
-
         List<String> namesList = employeeList.stream().map(e -> e.getName()).collect(Collectors.toList());
         System.out.println(namesList);
-
         // Collectors.toSet() Example
         Set<String> regionSet = employeeList.stream().map(e -> e.getRegion()).collect(Collectors.toSet());
         System.out.println(regionSet);
-        regionSet.add("hello");
-        System.out.println(regionSet);
-
         // Collectors.toUnmodifiableSet() Example
-
-        Set<Double> unmodifiableSet = employeeList.stream().map(e -> e.getSal())
-                .collect(Collectors.toUnmodifiableSet());
+        Set<Double> unmodifiableSet = employeeList.stream().map(e -> e.getSal()).collect(Collectors.toUnmodifiableSet());
         System.out.println(unmodifiableSet);
-        // unmodifiableSet.add(10983d);
 
-        // employeeList.add(null);
-
-        Set<Employee> empSet = employeeList.stream().collect(Collectors.toUnmodifiableSet());
-
-        // Collectors.toUnmodifiableList(() Example
-        // employeeList.add(null);
-        List<Double> unmodifiableList = employeeList.stream().map(e -> e.getSal())
-                .collect(Collectors.toUnmodifiableList());
-        System.out.println(unmodifiableList);
 
         // Collectors.toCollection() Example
-
-        List<String> namesLinkedList = employeeList.stream().map(e -> e.getName())
-                .collect(Collectors.toCollection(LinkedList::new));
+        List<String> namesLinkedList = employeeList.stream().map(e -> e.getName()).collect(Collectors.toCollection(LinkedList::new));
         System.out.println(namesLinkedList);
-
-        Set<String> regionTreeSet = employeeList.stream().map(e -> e.getRegion())
-                .collect(Collectors.toCollection(TreeSet::new));
+        Set<String> regionTreeSet = employeeList.stream().map(e -> e.getRegion()).collect(Collectors.toCollection(TreeSet::new));
         System.out.println(regionTreeSet);
 
+
+
         // Collectors.toMap() Example
-        Map<Integer, Employee> empMap = employeeList.stream()
-                .collect(Collectors.toMap((e) -> e.getId(), Function.identity()));
+        Map<Integer, Employee> empMap = employeeList.stream().collect(Collectors.toMap((e) -> e.getId(), Function.identity()));
         System.out.println(empMap);
 
-        // with duplicate key. uncomment to work with toMap() for duplicate merger.
-        // employeeList.add(new Employee(400, "Larry Page", 59, "Africa", 450000));
-
-        Map<Integer, Employee> empDupMap = employeeList.stream()
-                .collect(Collectors.toMap((e) -> e.getId(), Function.identity(), (emp, sameEmp) -> sameEmp));
+        Map<Integer, Employee> empDupMap = employeeList.stream().collect(Collectors.toMap((e) -> e.getId(), Function.identity(), (emp, sameEmp) -> sameEmp));
         System.out.println(empDupMap);
 
         // Collectors.toUnmodifiableMap() Example
-        Map<Integer, Employee> empUnmodifiedMap = employeeList.stream()
-                .collect(Collectors.toMap((e) -> e.getId(), Function.identity(), (emp, sameEmp) -> sameEmp));
+        Map<Integer, Employee> empUnmodifiedMap = employeeList.stream().collect(Collectors.toMap((e) -> e.getId(), Function.identity(), (emp, sameEmp) -> sameEmp));
         System.out.println(empUnmodifiedMap);
 
         // Collector.summingInt() Example
-
         int sumOfEmpIds = employeeList.stream().collect(Collectors.summingInt((Employee e) -> e.getId()));
         System.out.println("Collectors.summingInt : " + sumOfEmpIds);
-
-        // Collector.summingInt() Example
-
+        // Collector.summingDouble() Example
         double sumOfEmpSalss = employeeList.stream().collect(Collectors.summingDouble((Employee e) -> e.getSal()));
         System.out.println("Collectors.summingDouble : " + sumOfEmpSalss);
 
         // Collectors.averagingInt() / averagingLong() / averagingDouble() Examples
-
         double avgOfEmpSalss = employeeList.stream().collect(Collectors.averagingDouble((Employee e) -> e.getSal()));
         System.out.println("Collectors.averagingDouble avg sal: " + avgOfEmpSalss);
 
         // Collectors.counting() Example
-
         long count = employeeList.stream().collect(Collectors.counting());
         System.out.println("Collectors.counting() : Count : " + count);
 
@@ -268,24 +238,25 @@ public class Java8CollectorExamples {
         String joinePrePostStr = employeeList.stream().map(e -> e.getName()).collect(Collectors.joining("*", "@", "|"));
         System.out.println("joinePrePostStr by using joining(Delimiter) method : " + joinePrePostStr);
 
+
         // Collectors.groupingBy() Example
         Map<String, List<Employee>> groupByRegion = employeeList.stream()
                 .collect(Collectors.groupingBy((Employee e) -> e.getRegion()));
         System.out.println("groupByRegion :: " + groupByRegion);
-
         // groupingBy for set.
         Map<String, Set<Employee>> groupByRegionSet = employeeList.stream()
                 .collect(Collectors.groupingBy((Employee e) -> e.getRegion(), Collectors.toSet()));
         System.out.println("groupByRegionSet :: " + groupByRegionSet);
 
+
         // Collectors.partitioningBy() Example
         Map<Boolean, List<Employee>> partitionByAge = employeeList.stream()
                 .collect(Collectors.partitioningBy(e -> e.getAge() > 30));
         System.out.println("partitionByAge :: " + partitionByAge);
-
         // Set as Map value
         Map<Boolean, Set<Employee>> partitionByAgeSet = employeeList.stream()
                 .collect(Collectors.partitioningBy(e -> e.getAge() > 30, Collectors.toSet()));
+
 
         // LinkedList as Map value
         Map<Boolean, LinkedList<Employee>> partitionByAgeLinedList = employeeList.stream()

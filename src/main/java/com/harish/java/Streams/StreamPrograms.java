@@ -22,8 +22,6 @@ public class StreamPrograms {
                 .map(s -> Integer.valueOf(s))
                 .collect(Collectors.toList());
 
-
-
     }
 
 
