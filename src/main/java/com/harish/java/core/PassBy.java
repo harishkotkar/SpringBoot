@@ -1,72 +1,118 @@
 package com.harish.java.core;
 
+
+class UserClass {
+    String name;
+    int id;
+    AddressClass address;
+
+    public UserClass(String name, int id, AddressClass address) {
+        this.name = name;
+        this.id = id;
+        this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public AddressClass getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressClass address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "UserClass{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", address=" + address +
+                '}';
+    }
+}
+
+
+class AddressClass {
+    String city;
+    int id;
+
+    public AddressClass(String city, int id) {
+        this.city = city;
+        this.id = id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressClass{" +
+                "city='" + city + '\'' +
+                ", id=" + id +
+                '}';
+    }
+}
+
 public class PassBy {
 
+    public static void main(String[] args) {
 
-    public static void main(String... doYourBest) {
-        Simpson simpson5 = new Simpson();
-        System.out.println(simpson5.name);
-        System.out.println(simpson5.sum);
-        transformIntoHomer5(simpson5);
-        transformIntoHomer5(simpson5,1,2);
-        System.out.println(simpson5.name);
-        System.out.println(simpson5.sum);
+        UserClass userClass = new UserClass("Harish",1, new AddressClass("Pune",1));
+        System.out.println(userClass);
 
-        System.out.println("-----------");
+        transform(userClass);
+        System.out.println(userClass);
 
-        String name1 = new String("Harish");
-        System.out.println(name1);
-        transformIntoHomer(name1);
-        System.out.println(name1);
+        transformAddress(userClass.getAddress());
+        System.out.println(userClass);
 
-        System.out.println("-----------");
-
-        int int1 = 1;
-        System.out.println(int1);
-        transformIntoHomer(int1);
-        System.out.println(int1);
-
-        System.out.println("-----------");
         Integer i = new Integer(11);
         System.out.println(i);
-        transformIntoHomer(i);
+        transformVariable(i);
         System.out.println(i);
 
-        System.out.println("-----------");
-
-
-
-
     }
 
-    static void transformIntoHomer(int int1) {
-        int1 = 2;
+    public static void transform(UserClass u) {
+        u.setName("harry");
     }
 
-    static void transformIntoHomer(String name) {
-        name = "aaaa";
+    public static void transformAddress(AddressClass a) {
+        a.setCity("Don");
     }
 
-    static void transformIntoHomer(Integer number) {
-        number = 1111;
+    public static void transformVariable(Integer i) {
+      i = 555;
     }
 
-
-    static void transformIntoHomer5(Simpson simpson) {
-        simpson.name = "Homer";
-        Simpson simpson2 = new Simpson();
-        simpson2.name = "kotkar";
-        simpson = simpson2;
-
-    }
-
-    static void transformIntoHomer5(Simpson simpson, int a,int b) {
-        simpson.sum = a+b;
-    }
 
 }
 
-class Simpson {
-    String name;
-    int sum;
-}

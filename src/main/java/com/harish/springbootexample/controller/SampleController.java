@@ -48,6 +48,7 @@ public class SampleController {
 
     @PostMapping("/Organization")
     public Organization createOrganization(@RequestBody Organization organization) {
+        System.out.println("Creating Organization");
         organizationService.saveOrganization(organization);
         return organization;
 
