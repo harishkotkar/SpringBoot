@@ -2,44 +2,39 @@ package com.harish.java.Streams.StreamProgrrams;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamOfExample {
 
     public static void main(String args[]) {
 
-        List<Integer> listOfInt = List.of(4,1,8,3,0,5,2,6,7,9);
+        List<Integer> listOfInt = List.of(4, 1, 8, 3, 0, 5, 2, 6, 7, 9);
 
         Optional<Integer> first = findFirst(listOfInt);
-        System.out.println("first = " +first.get());
+        System.out.println("first = " + first.get());
 
         int min = findMin(listOfInt);
-        System.out.println("Min = " +min);
+        System.out.println("Min = " + min);
 
         int max = findMax(listOfInt);
-        System.out.println("max = " +max);
+        System.out.println("max = " + max);
 
         int sum = findSum(listOfInt);
-        System.out.println("sum = " +sum);
+        System.out.println("sum = " + sum);
 
         List<Integer> even = findEven(listOfInt);
-        System.out.println("even = " +even);
+        System.out.println("even = " + even);
 
-        List<Integer> listOfInt2 = List.of(14,21,18,33,60,15,2,46,67,89);
+        List<Integer> listOfInt2 = List.of(14, 21, 18, 33, 60, 15, 2, 46, 67, 89);
         List<Integer> startWithOne = startWithOne(listOfInt2);
-        System.out.println("startWithOne = " +startWithOne);
+        System.out.println("startWithOne = " + startWithOne);
 
-        List<Integer> listOfInt3 = List.of(4,1,8,3,0,5,2,6,7,9,1,5,9);
+        List<Integer> listOfInt3 = List.of(4, 1, 8, 3, 0, 5, 2, 6, 7, 9, 1, 5, 9);
         List<Integer> duplicates = findDuplicates(listOfInt3);
-        System.out.println("duplicates = " +duplicates);
+        System.out.println("duplicates = " + duplicates);
 
 
         Map<Integer, Long> occurrences = findOccurrences(listOfInt3);
-        System.out.println("occurrences = " +occurrences);
-
-
-
-
+        System.out.println("occurrences = " + occurrences);
 
 
 
@@ -58,7 +53,7 @@ public class StreamOfExample {
         return listOfInt.stream().findFirst();
     }
 
-    private static Map<Integer,Long> findOccurrences(List<Integer> listOfInt3) {
+    private static Map<Integer, Long> findOccurrences(List<Integer> listOfInt3) {
         return listOfInt3.stream().collect(Collectors.groupingBy(integer -> integer.intValue(), Collectors.counting()));
     }
 
@@ -80,7 +75,7 @@ public class StreamOfExample {
     }
 
     private static List<Integer> findEven(List<Integer> listOfInt) {
-        return listOfInt.stream().collect(Collectors.filtering(e -> e%2 == 0, Collectors.toList()));
+        return listOfInt.stream().collect(Collectors.filtering(e -> e % 2 == 0, Collectors.toList()));
     }
 
     private static List<Integer> startWithOne(List<Integer> listOfInt) {
