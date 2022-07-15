@@ -1,6 +1,7 @@
 package com.harish.springbootexample.repository;
 
 import com.harish.springbootexample.model.Organization;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
