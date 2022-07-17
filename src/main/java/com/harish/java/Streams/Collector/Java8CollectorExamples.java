@@ -6,6 +6,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 class Customer {
     private int id;
@@ -63,6 +64,8 @@ class Customer {
         this.lineItems = lineItems;
     }
 
+
+
 }
 
 class LineItem {
@@ -116,13 +119,15 @@ class Employee {
     private int age;
     private String region;
     private double sal;
+    private List<Employee> employeeList;
 
-    public Employee(int id, String name, int age, String region, double sal) {
+    public Employee(int id, String name, int age, String region, double sal, List<Employee> list) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.region = region;
         this.sal = sal;
+        this.employeeList = list;
     }
 
     public int getId() {
@@ -164,6 +169,14 @@ class Employee {
     public void setSal(double sal) {
         this.sal = sal;
     }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
 }
 
 /**
@@ -177,11 +190,22 @@ public class Java8CollectorExamples {
 
         // Creating a Employee List - Example
 
+        List<Employee> employeeList2 = new ArrayList<>();
+        employeeList2.add(new Employee(100, "AAA", 25, "Asia", 250000, Collections.emptyList()));
+        employeeList2.add(new Employee(200, "BBB", 21, "Africa", 250000, Collections.emptyList()));
+
+        List<Employee> employeeList3 = new ArrayList<>();
+        employeeList3.add(new Employee(300, "CCC", 30, "Asia", 450000, Collections.emptyList()));
+        employeeList3.add(new Employee(400, "DDD", 29, "Africa", 350000, Collections.emptyList()));
+
         List<Employee> employeeList = new ArrayList<>();
-        employeeList.add(new Employee(100, "Sundar", 47, "North America", 450000));
-        employeeList.add(new Employee(200, "Pichai", 25, "North America", 50000));
-        employeeList.add(new Employee(300, "Larry", 30, "Asia", 450000));
-        employeeList.add(new Employee(400, "Page", 59, "Africa", 450000));
+        employeeList.add(new Employee(500, "EEE", 47, "North America", 750000, employeeList3));
+        employeeList.add(new Employee(600, "FFF", 35, "North America", 750000, employeeList2));
+
+
+
+
+
 
         // Collectors.toList() Example
         List<String> namesList = employeeList.stream().map(e -> e.getName()).collect(Collectors.toList());
