@@ -9,6 +9,7 @@ public class Java8Function {
     public static void main(String a[]) {
         example();
         example1();
+        example2();
     }
 
     public static void example() {
@@ -28,6 +29,15 @@ public class Java8Function {
 
         String result = joinString.apply("Name", "Harish Kotkar");
         System.out.println(result);
+
+    }
+
+    public static void example2() {
+
+        BiFunction<Integer, Integer, Integer> f1 = (a, b) -> a + b;
+        Function<Integer, Integer> f2 = a -> a * a;
+
+        System.out.println(f1.andThen(f2).apply(10, 10));
 
     }
 
